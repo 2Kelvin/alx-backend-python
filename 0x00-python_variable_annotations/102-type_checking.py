@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 '''More involved type annotations'''
-from typing import Tuple, List, Any
+from typing import Tuple, List
 
 
 def zoom_array(lst: Tuple, factor: int = 2) -> List:
