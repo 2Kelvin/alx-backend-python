@@ -1,17 +1,18 @@
 #!/usr/bin/env python3
 '''More involved type annotations'''
+from typing import Tuple, List, Any
 
 
-def zoom_array(lst: list, factor: int = 2) -> list:
-    '''fixed all annotaion issues with this function using mypy'''
-    zoomed_in: list = [
+def zoom_array(lst: Tuple, factor: int = 2) -> List:
+    '''fixed annotation issues using mypy'''
+    zoomed_in: List = [
         item for item in lst
         for i in range(factor)
     ]
     return zoomed_in
 
 
-array = [12, 72, 91]
+array = (12, 72, 91)
 
 zoom_2x = zoom_array(array)
 
