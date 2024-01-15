@@ -10,4 +10,4 @@ def task_wait_random(max_delay: int):
 
 
 if __name__ == '__main__':
-    task_wait_random()
+    asyncio.run(task_wait_random())
