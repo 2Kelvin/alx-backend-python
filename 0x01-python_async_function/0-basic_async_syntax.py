@@ -4,7 +4,7 @@ import asyncio
 import random
 
 
-async def wait_random(max_delay: int = 10) -> float:
+async def wait_random(max_delay: int = 10) -> asyncio.Task:
     '''returns a random delay float'''
     delayedTime = random.uniform(float(0), float(max_delay))
     await asyncio.sleep(delayedTime)
