@@ -90,7 +90,3 @@ class TestGithubOrgClient(unittest.TestCase):
             )
             mock_public_repos_url.assert_called_once()
         mock_get_json.assert_called_once()
-
-
-if __name__ == '__main__':
-    unittest.main()
