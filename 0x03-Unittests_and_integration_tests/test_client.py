@@ -94,16 +94,21 @@ class TestGithubOrgClient(unittest.TestCase):
         mock_get_json.assert_called_once()
 
     @parameterized.expand([
-        ("lic_true", {"license": {"key": "my_license"}},
-         "my_license", True),
-        ("lic_false", {"license": {"key": "other_license"}},
-         "my_license", False)
+        ({'license': {'key': 'my_license'}}, 'my_license', True),
+        ({'license': {'key': 'other_license'}}, 'my_license', False)
     ])
-    def test_has_license(self, repo: Dict, key: str, answer: bool) -> None:
-        '''unit test for has_license'''
-        githubClnt = GithubOrgClient('google')
-        boolHasLicence = githubClnt.has_license(repo, key)
-        self.assertEqual(boolHasLicence, answer)
+    @patch('client.get_json')
+    def test_has_license(self, repo, license_key, expected, mock_get_json):
+        """test_has_license function.
+        Tests that the result of has_license is the expected one
+        based on the mocked payload.
+        """
+        with patch.object(GithubOrgClient, 'has_license') as mock_has_license:
+            mock_has_license.return_value = expected
+            self.assertEqual(GithubOrgClient.has_license(
+                repo,
+                license_key), expected)
+            mock_has_license.assert_called_once_with(repo, license_key)
 
 
 @parameterized_class([
