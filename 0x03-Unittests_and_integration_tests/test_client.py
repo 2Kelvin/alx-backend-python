@@ -21,3 +21,7 @@ class TestGithubOrgClient(unittest.TestCase):
         githubClient = GithubOrgClient(org)
         self.assertEqual(githubClient.org(), theResponse)
         mocked.assert_called_once_with(f'https://api.github.com/orgs/{org}')
+
+
+if __name__ == '__main__':
+    unittest.main()
