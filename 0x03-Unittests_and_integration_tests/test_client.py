@@ -94,13 +94,17 @@ class TestGithubOrgClient(unittest.TestCase):
         mock_get_json.assert_called_once()
 
     @parameterized.expand([
-        ({'license': {'key': 'my_license'}}, 'my_license', True),
-        ({'license': {'key': 'other_license'}}, 'my_license', False)
+        ({"license": {"key": "my_license"}}, "my_license", True),
+        ({"license": {"key": "other_license"}}, "my_license", False),
+        ({"some_key": "some_value"}, "my_license", False),
+        ({"license": {"other_key": "some_value"}}, "my_license", False),
+        ({"some_key": "some_value"}, "other_license", False),
+        ({"nested": {"license": {"key": "my_license"}}}, "my_license", False),
     ])
-    def test_has_license(self, repo: Dict, key: str, answer: bool) -> None:
-        '''unit test for has_license'''
-        boolHasLicence = GithubOrgClient.has_license(repo, key)
-        self.assertEqual(boolHasLicence, answer)
+    def test_has_license(self, repo, license_key, expected_result):
+        """Unit test for GithubOrgClient.has_license method."""
+        result = GithubOrgClient.has_license(repo, license_key)
+        self.assertEqual(result, expected_result)
 
 
 @parameterized_class([
