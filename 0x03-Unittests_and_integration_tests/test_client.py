@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 '''Parameterize and patch as decorators '''
 from parameterized import parameterized, parameterized_class
-from typing import Dict, Tuple, Union
+from typing import Dict
 from unittest.mock import patch, Mock, MagicMock, PropertyMock
 import unittest
-from client import GithubOrgClient, _public_repos_url, has_license
+from client import GithubOrgClient
 from fixtures import TEST_PAYLOAD
 from requests import HTTPError
 
