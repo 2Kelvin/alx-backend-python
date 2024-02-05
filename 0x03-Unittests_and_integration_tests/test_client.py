@@ -99,8 +99,7 @@ class TestGithubOrgClient(unittest.TestCase):
     ])
     def test_has_license(self, repo: Dict, key: str, answer: bool) -> None:
         '''unit test for has_license'''
-        githubClnt = GithubOrgClient('google')
-        boolHasLicence = githubClnt.has_license(repo, key)
+        boolHasLicence = GithubOrgClient.has_license(repo, key)
         self.assertEqual(boolHasLicence, answer)
 
 
